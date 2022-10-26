@@ -9,9 +9,8 @@ from pathlib  import Path
 def get_project_root_dir() -> str:
     path= os.path.dirname(os.path.abspath("__init__.py"))
     ps=path.split('average-reward-reinforcement-learning')
-    # print(ps)
-    # return ps[0]+'average-reward-reinforcement-learning\\'  # Uncomment this line for windows systems
-    return ps[0]+'average-reward-reinforcement-learning'  # comment this line for windows systems
+    
+    return os.path.join(ps[0], 'average-reward-reinforcement-learning', '')
 
 def get_project_root_dir2() -> str:
     """

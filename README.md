@@ -12,10 +12,6 @@ Depending on preferences, both a `requirements.txt` file and a `setup.py` file a
 Within the `main_SSH.py` you can decide the environment by uncommenting the one you want to test, decide the time horizon and the number of replicates.
 You can also decide to comment/uncomment available algorithms.
 
-## Windows system
-
-If your system is Windows, please go to the `./experiments/utils.py` file, comment the line 14 and uncomment the line 13. Then you can proceed as usual.
-
 ## Parallelization
 
 Be aware that this code will run on as much cores as there are available.
