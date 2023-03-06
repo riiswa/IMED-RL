@@ -8,9 +8,12 @@ import environments.RegisterEnvironments as bW
 import learners.discreteMDPs.OptimalControl  as opt
 import time
 import numpy as np
+import os
 
 from experiments.utils import get_project_root_dir
 ROOT= get_project_root_dir()+"/experiments/"
+
+os.makedirs(os.path.join(ROOT, "results"), exist_ok=True)
 
 def runLargeMulticoreExperiment(env, agents, timeHorizon=1000, nbReplicates=100):
     envFullName= env.name
