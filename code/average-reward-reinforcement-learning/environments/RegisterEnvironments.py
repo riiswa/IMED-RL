@@ -139,4 +139,4 @@ def makeWorld(registername):
     :param registername: name of the environment to be registered into gym
     :return:  full name of the registered environment
     """
-    return gym.make(registername)
+    return gym.make(registername, disable_env_checker=True)

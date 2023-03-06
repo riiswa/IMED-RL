@@ -17,7 +17,7 @@ def oneXpNoRender(env,learner,timeHorizon):
     for t in range(timeHorizon):
         state = observation
         action = learner.play(state)  # Get action
-        observation, reward, done, info = env.step(action)
+        observation, reward, done, _, info = env.step(action)
         learner.update(state, action, reward, observation)  # Update learners
         #print("info:",info, "reward:", reward)
         cumreward += reward
@@ -50,7 +50,7 @@ def oneXpNoRenderWithDump(env,learner,timeHorizon):
     for t in range(timeHorizon):
         state = observation
         action = learner.play(state)  # Get action
-        observation, reward, done, info = env.step(action)
+        observation, reward, done, _, info = env.step(action)
         learner.update(state, action, reward, observation)  # Update learners
         #print("info:",info, "reward:", reward)
         cumreward += reward
@@ -67,7 +67,7 @@ def oneXpNoRenderWithDump(env,learner,timeHorizon):
             #break
 
     filename = ROOT+"results/cumMeans_" + env.name + "_" + learner.name() + "_" + str(timeHorizon) +"_" + str(time.time())
-    file =  open(filename,'wb')
+    file = open(filename,'wb')
     file.truncate(0)
     pickle.dump(cummeans, file)
     file.close()

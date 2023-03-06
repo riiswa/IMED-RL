@@ -88,7 +88,7 @@ class DiscreteMDP(Env):
         self.s = s
         self.lastaction = a
         self.lastreward = r
-        return (s, r, d, m)
+        return (s, r, d, None, m)
 
     def getTransition(self, s, a):
         transition = np.zeros(self.nS)
