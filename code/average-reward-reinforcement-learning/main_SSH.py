@@ -4,6 +4,7 @@ import environments.RegisterEnvironments as bW
 import learners.discreteMDPs.UCRL3 as le
 import learners.discreteMDPs.PSRL as psrl
 import learners.discreteMDPs.IRL as IRL
+import learners.discreteMDPs.IRL_ as IRL_
 import learners.Generic.Qlearning as ql
 import learners.Generic.Random as random
 
@@ -39,6 +40,7 @@ delta = 0.05
 
 agents = []
 agents.append(([IRL.IRL, {"nbr_states":nS, "nbr_actions":nA}]))  # IMED-RL
+agents.append(([IRL_.GDIRL, {"nbr_states":nS, "nbr_actions":nA}]))  # IMED-RL
 agents.append( [psrl.PSRL, {"nS":nS, "nA":nA, "delta":delta}])  # PSRL
 agents.append( [le.UCRL3_lazy, {"nS":nS, "nA":nA, "delta":delta}])  # UCRL3
 agents.append([ql.Qlearning, {"nS": nS, "nA": nA}])  # Q-learning
@@ -47,4 +49,4 @@ agents.append([ql.Qlearning, {"nS": nS, "nA": nA}])  # Q-learning
 #######################
 # Run a full experiment
 #######################
-runLargeMulticoreExperiment(env, agents, timeHorizon=5000, nbReplicates=32)
+runLargeMulticoreExperiment(env, agents, timeHorizon=5000, nbReplicates=128)

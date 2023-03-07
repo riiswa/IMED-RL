@@ -143,6 +143,10 @@ class IRL(Agent):
         if not self.all_selected[state]:
             self.all_selected[state] = np.all(self.state_action_pulls[state] > 0)
 
+    def h(self, p, upper_bound, delta, u):
+        res = minimize_scalar(lambda x: - np.sum(p * np.log(upper_bound - delta * x)), bounds=(0, u), method='bounded')
+        return res.fun
+
     def multinomial_imed(self, state):
         upper_bound = self.max_reward + np.max(self.phi)
         q = self.rewards[state] + self.transitions[state] @ self.phi
@@ -171,10 +175,7 @@ class IRL(Agent):
 
                 delta = v - mu
 
-                h = lambda x: - np.sum(p * np.log(upper_bound - delta*x))
-
-                res = minimize_scalar(h, bounds=(0, u), method='bounded')
-                x = - res.fun
+                x = -self.h(p, upper_bound, delta, u)
                 n = self.state_action_pulls[state, a]
                 self.index[a] = n * x + np.log(x)
 
